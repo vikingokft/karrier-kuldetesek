@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{cim}} — Karrierküldetés</title>
+{{#if standalone}}
+<style>
+body { margin: 0; padding: 40px 20px; background: var(--kk-page-bg, #f0e9df); min-height: 100vh; }
+</style>
+{{/if}}
+<style>
+{{{css}}}
+</style>
+</head>
+<body>
+<div class="kk-root" data-tema="{{tema}}">
+  <header class="kk-header">
+    <div class="kk-header-label">Karrier küldetés</div>
+    <h1 class="kk-title">{{cim}}</h1>
+    {{#if leiras}}<p class="kk-leiras">{{leiras}}</p>{{/if}}
+  </header>
+
+  <div class="kk-flow" id="kk-flow-{{slug}}">
+    <div class="kk-grid">
+      {{#each kurzusok}}
+        {{#if kesz}}
+        <a class="kk-card kk-card--kesz" href="{{url}}" data-idx="{{@index}}" target="_blank" rel="noopener">
+          <div class="kk-card-num">{{kkNum @index}}</div>
+          <div class="kk-card-ikon">{{ikon}}</div>
+          <div class="kk-card-cim">{{cim}}</div>
+          {{#if hossz}}<div class="kk-card-hossz">{{hossz}} óra</div>{{/if}}
+        </a>
+        {{else}}
+        <div class="kk-card kk-card--hamarosan" data-idx="{{@index}}" aria-disabled="true">
+          <div class="kk-card-num">{{kkNum @index}}</div>
+          <div class="kk-card-badge">Hamarosan</div>
+          <div class="kk-card-ikon">{{ikon}}</div>
+          <div class="kk-card-cim">{{cim}}</div>
+          {{#if hossz}}<div class="kk-card-hossz">{{hossz}} óra</div>{{/if}}
+        </div>
+        {{/if}}
+      {{/each}}
+      <div class="kk-card kk-card--vegcel" data-idx="vegcel">
+        <div class="kk-card-ikon">{{vegcel.ikon}}</div>
+        <div class="kk-card-cim">{{vegcel.cim}}</div>
+      </div>
+    </div>
+    <svg class="kk-arrows" aria-hidden="true"></svg>
+  </div>
+</div>
+
+<script>
+(function(){
+  var root = document.getElementById('kk-flow-{{slug}}');
+  if (!root) return;
+  var grid = root.querySelector('.kk-grid');
+  var svg = root.querySelector('.kk-arrows');
+  var SVG_NS = 'http://www.w3.org/2000/svg';
+
+  function applySnakeOrder() {
+    var style = window.getComputedStyle(grid);
+    var cols = style.gridTemplateColumns.split(' ').length;
+    var cards = Array.prototype.slice.call(grid.children);
+    cards.forEach(function(c){ c.style.order = ''; c.dataset.kkRow = ''; c.dataset.kkCol = ''; });
+    cards.forEach(function(card, i) {
+      var row = Math.floor(i / cols);
+      var colInRow = i % cols;
+      var visualCol = (row % 2 === 0) ? colInRow : (cols - 1 - colInRow);
+      var order = row * cols + visualCol;
+      card.style.order = order;
+      card.dataset.kkRow = row;
+      card.dataset.kkCol = visualCol;
+      card.dataset.kkSeq = i;
+    });
+  }
+
+  function drawArrows() {
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    var rect = root.getBoundingClientRect();
+    svg.setAttribute('width', rect.width);
+    svg.setAttribute('height', rect.height);
+    svg.setAttribute('viewBox', '0 0 ' + rect.width + ' ' + rect.height);
+
+    var defs = document.createElementNS(SVG_NS, 'defs');
+    var marker = document.createElementNS(SVG_NS, 'marker');
+    marker.setAttribute('id', 'kk-arrow-head-{{slug}}');
+    marker.setAttribute('viewBox', '0 0 10 10');
+    marker.setAttribute('refX', '8');
+    marker.setAttribute('refY', '5');
+    marker.setAttribute('markerWidth', '6');
+    marker.setAttribute('markerHeight', '6');
+    marker.setAttribute('orient', 'auto-start-reverse');
+    var path = document.createElementNS(SVG_NS, 'path');
+    path.setAttribute('d', 'M 0 0 L 10 5 L 0 10 z');
+    path.setAttribute('class', 'kk-arrow-head');
+    marker.appendChild(path);
+    defs.appendChild(marker);
+    svg.appendChild(defs);
+
+    var cards = Array.prototype.slice.call(grid.children)
+      .sort(function(a, b) { return parseInt(a.dataset.kkSeq || 999) - parseInt(b.dataset.kkSeq || 999); });
+
+    for (var i = 0; i < cards.length - 1; i++) {
+      var from = cards[i].getBoundingClientRect();
+      var to = cards[i+1].getBoundingClientRect();
+      var sameRow = cards[i].dataset.kkRow === cards[i+1].dataset.kkRow;
+      var x1, y1, x2, y2, d;
+      if (sameRow) {
+        // horizontal — direction depends on row parity (snake)
+        var row = parseInt(cards[i].dataset.kkRow);
+        var leftToRight = (row % 2 === 0);
+        if (leftToRight) {
+          x1 = from.right - rect.left;
+          x2 = to.left - rect.left;
+        } else {
+          x1 = from.left - rect.left;
+          x2 = to.right - rect.left;
+        }
+        y1 = from.top + from.height/2 - rect.top;
+        y2 = to.top + to.height/2 - rect.top;
+        d = 'M ' + x1 + ' ' + y1 + ' L ' + x2 + ' ' + y2;
+      } else {
+        // Row change — L-shape from bottom of `from` to top of `to`
+        var fx = (from.left + from.right)/2 - rect.left;
+        var tx = (to.left + to.right)/2 - rect.left;
+        y1 = from.bottom - rect.top;
+        y2 = to.top - rect.top;
+        var midY = (y1 + y2) / 2;
+        if (Math.abs(fx - tx) < 2) {
+          d = 'M ' + fx + ' ' + y1 + ' L ' + fx + ' ' + y2;
+        } else {
+          // vertical down, then horizontal, then vertical down into target
+          d = 'M ' + fx + ' ' + y1 +
+              ' L ' + fx + ' ' + midY +
+              ' L ' + tx + ' ' + midY +
+              ' L ' + tx + ' ' + y2;
+        }
+      }
+      var line = document.createElementNS(SVG_NS, 'path');
+      line.setAttribute('d', d);
+      line.setAttribute('class', 'kk-arrow-line');
+      line.setAttribute('marker-end', 'url(#kk-arrow-head-{{slug}})');
+      svg.appendChild(line);
+    }
+  }
+
+  function update() { applySnakeOrder(); drawArrows(); }
+  update();
+  if (window.ResizeObserver) {
+    new ResizeObserver(update).observe(root);
+  } else {
+    window.addEventListener('resize', update);
+  }
+  // Re-run after fonts load (card sizes can shift)
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(update);
+  }
+  setTimeout(update, 100);
+  setTimeout(update, 500);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,207 @@
+/* Karrierküldetés — Új téma (Vikingo Design System) */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=DM+Mono:wght@500&display=swap');
+/* Clash Display nincs a Google Fontsban — Vikingo self-hostolja. Fallback-re rendes sans-serif. */
+
+.kk-root[data-tema="uj"] {
+  --kk-page-bg: #F6EFE8;
+  --kk-bg: #F6EFE8;
+  --kk-card-bg: #FFFFFF;
+  --kk-text: #3E2E45;
+  --kk-text-muted: #7A6B82;
+  --kk-accent: #FF544D;
+  --kk-arrow: #3E2E45;
+  --kk-vegcel-bg: #FF544D;
+  --kk-vegcel-text: #FFFFFF;
+  --kk-shadow: 0 4px 12px rgba(62, 46, 69, 0.08);
+  --kk-shadow-hover: 0 10px 24px rgba(255, 84, 77, 0.18);
+  --kk-radius: 12px;
+  --kk-radius-sm: 8px;
+  --kk-font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --kk-font-heading: 'Clash Display', 'DM Sans', -apple-system, sans-serif;
+  --kk-font-mono: 'DM Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  font-family: var(--kk-font-body);
+  color: var(--kk-text);
+  background: var(--kk-bg);
+  border-radius: 16px;
+  padding: 48px 36px;
+  max-width: 1100px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.kk-root[data-tema="uj"] *,
+.kk-root[data-tema="uj"] *::before,
+.kk-root[data-tema="uj"] *::after {
+  box-sizing: border-box;
+}
+
+.kk-root[data-tema="uj"] .kk-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.kk-root[data-tema="uj"] .kk-header-label {
+  display: inline-block;
+  font-family: var(--kk-font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--kk-accent);
+  padding: 6px 14px;
+  border: 1px solid var(--kk-accent);
+  border-radius: 999px;
+  margin-bottom: 18px;
+}
+.kk-root[data-tema="uj"] .kk-title {
+  font-family: var(--kk-font-heading);
+  font-size: 40px;
+  font-weight: 700;
+  margin: 0 0 14px 0;
+  color: var(--kk-text);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+.kk-root[data-tema="uj"] .kk-leiras {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--kk-text-muted);
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.kk-root[data-tema="uj"] .kk-flow {
+  position: relative;
+}
+.kk-root[data-tema="uj"] .kk-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px 36px;
+  position: relative;
+  z-index: 1;
+}
+@media (max-width: 900px) {
+  .kk-root[data-tema="uj"] .kk-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .kk-root[data-tema="uj"] .kk-grid { grid-template-columns: 1fr; }
+}
+
+.kk-root[data-tema="uj"] .kk-card {
+  position: relative;
+  background: var(--kk-card-bg);
+  border: 2px solid transparent;
+  border-radius: var(--kk-radius);
+  padding: 24px 20px 20px 20px;
+  box-shadow: var(--kk-shadow);
+  text-align: center;
+  text-decoration: none;
+  color: var(--kk-text);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 160px;
+}
+.kk-root[data-tema="uj"] .kk-card--kesz:hover {
+  transform: translateY(-3px);
+  border-color: var(--kk-accent);
+  box-shadow: var(--kk-shadow-hover);
+}
+.kk-root[data-tema="uj"] .kk-card-num {
+  position: absolute;
+  top: -10px;
+  left: 16px;
+  background: var(--kk-accent);
+  color: #fff;
+  font-family: var(--kk-font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+.kk-root[data-tema="uj"] .kk-card-ikon {
+  font-size: 42px;
+  line-height: 1;
+  margin: 8px 0 12px 0;
+}
+.kk-root[data-tema="uj"] .kk-card-cim {
+  font-family: var(--kk-font-heading);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.3;
+  margin-bottom: 8px;
+}
+.kk-root[data-tema="uj"] .kk-card-hossz {
+  font-family: var(--kk-font-mono);
+  font-size: 11px;
+  color: var(--kk-text-muted);
+  font-weight: 500;
+  margin-top: auto;
+  padding-top: 8px;
+  letter-spacing: 0.3px;
+}
+
+.kk-root[data-tema="uj"] .kk-card--hamarosan {
+  opacity: 0.45;
+  filter: grayscale(0.7);
+  cursor: not-allowed;
+}
+.kk-root[data-tema="uj"] .kk-card--hamarosan:hover {
+  transform: none;
+  border-color: transparent;
+  box-shadow: var(--kk-shadow);
+}
+.kk-root[data-tema="uj"] .kk-card--hamarosan .kk-card-badge {
+  position: absolute;
+  top: -10px;
+  right: 16px;
+  background: var(--kk-text-muted);
+  color: #fff;
+  font-family: var(--kk-font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  text-transform: uppercase;
+}
+
+.kk-root[data-tema="uj"] .kk-card--vegcel {
+  background: var(--kk-vegcel-bg);
+  color: var(--kk-vegcel-text);
+  min-height: 160px;
+  box-shadow: 0 12px 28px rgba(255, 84, 77, 0.25);
+}
+.kk-root[data-tema="uj"] .kk-card--vegcel .kk-card-ikon {
+  font-size: 48px;
+}
+.kk-root[data-tema="uj"] .kk-card--vegcel .kk-card-cim {
+  font-family: var(--kk-font-heading);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--kk-vegcel-text);
+}
+
+.kk-root[data-tema="uj"] .kk-arrows {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: visible;
+}
+.kk-root[data-tema="uj"] .kk-arrow-line {
+  fill: none;
+  stroke: var(--kk-arrow);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  opacity: 0.4;
+}
+.kk-root[data-tema="uj"] .kk-arrow-head {
+  fill: var(--kk-arrow);
+  opacity: 0.4;
+}

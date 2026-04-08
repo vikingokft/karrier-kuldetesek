@@ -1,0 +1,132 @@
+{
+  "slug": "virtualis-asszisztens",
+  "cim": "Virtuális asszisztens",
+  "leiras": "A vállalkozók egyre több feladatot szerveznek ki, és megbízható online segítségre van szükségük. A Virtuális asszisztens Karrier Küldetés abban támogat, hogy te lehess ez a megbízható háttérember. Megtanítjuk azokat a skilleket, amelyekre építve egy sikeres karriert építhetsz fel.",
+  "tema": "regi",
+  "vegcel": {
+    "cim": "Virtuális asszisztens",
+    "ikon": "💁"
+  },
+  "kurzusok": [
+    {
+      "cim": "Milyen vállalkozást indíts",
+      "ikon": "🚀",
+      "url": "https://fegyvertar.wpkurzus.hu/c/milyen-vallalkozast-indits/",
+      "notionId": null,
+      "hossz": null,
+      "kesz": true
+    },
+    {
+      "cim": "Marketing rendszerek",
+      "ikon": "📣",
+      "url": "https://fegyvertar.wpkurzus.hu/c/marketing-rendszerek/",
+      "notionId": null,
+      "hossz": null,
+      "kesz": true
+    },
+    {
+      "cim": "Piaci intelligencia",
+      "ikon": "🧠",
+      "url": "https://fegyvertar.wpkurzus.hu/c/piaci-intelligencia/",
+      "notionId": null,
+      "hossz": null,
+      "kesz": true
+    },
+    {
+      "cim": "Szövegírás",
+      "ikon": "✍️",
+      "url": null,
+      "notionId": null,
+      "hossz": null,
+      "kesz": false
+    },
+    {
+      "cim": "E-mail marketing",
+      "ikon": "📧",
+      "url": null,
+      "notionId": null,
+      "hossz": null,
+      "kesz": false
+    },
+    {
+      "cim": "Közösségi média",
+      "ikon": "📱",
+      "url": null,
+      "notionId": null,
+      "hossz": null,
+      "kesz": false
+    },
+    {
+      "cim": "SEO",
+      "ikon": "🔍",
+      "url": null,
+      "notionId": null,
+      "hossz": null,
+      "kesz": false
+    },
+    {
+      "cim": "Vizuális design",
+      "ikon": "🎨",
+      "url": "https://fegyvertar.wpkurzus.hu/c/vizualis-design/",
+      "notionId": null,
+      "hossz": null,
+      "kesz": true
+    },
+    {
+      "cim": "Fotózás alapjai",
+      "ikon": "📷",
+      "url": "https://fegyvertar.wpkurzus.hu/c/fotozas-alapjai/",
+      "notionId": null,
+      "hossz": null,
+      "kesz": true
+    },
+    {
+      "cim": "Mobilfotózás",
+      "ikon": "📲",
+      "url": "https://fegyvertar.wpkurzus.hu/c/mobilfotozas/",
+      "notionId": null,
+      "hossz": null,
+      "kesz": true
+    },
+    {
+      "cim": "Videózás",
+      "ikon": "🎥",
+      "url": "https://fegyvertar.wpkurzus.hu/c/videozas/",
+      "notionId": null,
+      "hossz": null,
+      "kesz": true
+    },
+    {
+      "cim": "Videóvágás",
+      "ikon": "✂️",
+      "url": null,
+      "notionId": null,
+      "hossz": null,
+      "kesz": false
+    },
+    {
+      "cim": "Canva",
+      "ikon": "🖌️",
+      "url": "https://fegyvertar.wpkurzus.hu/c/canva/",
+      "notionId": null,
+      "hossz": null,
+      "kesz": true
+    },
+    {
+      "cim": "WordPress",
+      "ikon": "🌐",
+      "url": "https://fegyvertar.wpkurzus.hu/c/wordpress/",
+      "notionId": null,
+      "hossz": null,
+      "kesz": true
+    },
+    {
+      "cim": "AI",
+      "ikon": "🤖",
+      "url": null,
+      "notionId": null,
+      "hossz": null,
+      "kesz": false
+    }
+  ]
+}

@@ -1,0 +1,180 @@
+{
+  "slug": "online-vallalkozo",
+  "cim": "Online vállalkozó",
+  "leiras": "A digitális térben elérhető lehetőségek új szintre emelik a vállalkozásindítást. Az Online vállalkozó Karrier Küldetés során megtanulod, hogyan marketingezd a vállalkozásod. Lehet ez online vagy tradicionális vállalkozás, az ügyfelek szerzése az egyik legfontosabb pillére a sikernek. Generalista szemlélettel érdemes hozzáállni a marketinghez, amihez átfogó ismereteket szerezhetsz a kurzusainkban.",
+  "tema": "regi",
+  "vegcel": {
+    "cim": "Online vállalkozó",
+    "ikon": "💼"
+  },
+  "kurzusok": [
+    {
+      "cim": "Milyen vállalkozást indíts",
+      "ikon": "🚀",
+      "url": "https://fegyvertar.wpkurzus.hu/c/milyen-vallalkozast-indits/",
+      "notionId": null,
+      "hossz": null,
+      "kesz": true
+    },
+    {
+      "cim": "Marketing rendszerek",
+      "ikon": "📣",
+      "url": "https://fegyvertar.wpkurzus.hu/c/marketing-rendszerek/",
+      "notionId": null,
+      "hossz": null,
+      "kesz": true
+    },
+    {
+      "cim": "Piaci intelligencia",
+      "ikon": "🧠",
+      "url": "https://fegyvertar.wpkurzus.hu/c/piaci-intelligencia/",
+      "notionId": null,
+      "hossz": null,
+      "kesz": true
+    },
+    {
+      "cim": "Szövegírás",
+      "ikon": "✍️",
+      "url": null,
+      "notionId": null,
+      "hossz": null,
+      "kesz": false
+    },
+    {
+      "cim": "Hirdetések készítése",
+      "ikon": "📢",
+      "url": null,
+      "notionId": null,
+      "hossz": null,
+      "kesz": false
+    },
+    {
+      "cim": "Meta hirdetések",
+      "ikon": "🅵",
+      "url": null,
+      "notionId": null,
+      "hossz": null,
+      "kesz": false
+    },
+    {
+      "cim": "TikTok hirdetések",
+      "ikon": "🎵",
+      "url": null,
+      "notionId": null,
+      "hossz": null,
+      "kesz": false
+    },
+    {
+      "cim": "E-mail marketing",
+      "ikon": "📧",
+      "url": null,
+      "notionId": null,
+      "hossz": null,
+      "kesz": false
+    },
+    {
+      "cim": "Közösségi média",
+      "ikon": "📱",
+      "url": null,
+      "notionId": null,
+      "hossz": null,
+      "kesz": false
+    },
+    {
+      "cim": "Google Ads",
+      "ikon": "🟢",
+      "url": null,
+      "notionId": null,
+      "hossz": null,
+      "kesz": false
+    },
+    {
+      "cim": "Vizuális design",
+      "ikon": "🎨",
+      "url": "https://fegyvertar.wpkurzus.hu/c/vizualis-design/",
+      "notionId": null,
+      "hossz": null,
+      "kesz": true
+    },
+    {
+      "cim": "Fotózás alapjai",
+      "ikon": "📷",
+      "url": "https://fegyvertar.wpkurzus.hu/c/fotozas-alapjai/",
+      "notionId": null,
+      "hossz": null,
+      "kesz": true
+    },
+    {
+      "cim": "Mobilfotózás",
+      "ikon": "📲",
+      "url": "https://fegyvertar.wpkurzus.hu/c/mobilfotozas/",
+      "notionId": null,
+      "hossz": null,
+      "kesz": true
+    },
+    {
+      "cim": "Videózás",
+      "ikon": "🎥",
+      "url": "https://fegyvertar.wpkurzus.hu/c/videozas/",
+      "notionId": null,
+      "hossz": null,
+      "kesz": true
+    },
+    {
+      "cim": "Videóvágás",
+      "ikon": "✂️",
+      "url": null,
+      "notionId": null,
+      "hossz": null,
+      "kesz": false
+    },
+    {
+      "cim": "Figma",
+      "ikon": "🎯",
+      "url": "https://fegyvertar.wpkurzus.hu/c/figma/",
+      "notionId": null,
+      "hossz": null,
+      "kesz": true
+    },
+    {
+      "cim": "Webdesign",
+      "ikon": "🖥️",
+      "url": "https://fegyvertar.wpkurzus.hu/c/webdesign/",
+      "notionId": null,
+      "hossz": null,
+      "kesz": true
+    },
+    {
+      "cim": "Canva",
+      "ikon": "🖌️",
+      "url": "https://fegyvertar.wpkurzus.hu/c/canva/",
+      "notionId": null,
+      "hossz": null,
+      "kesz": true
+    },
+    {
+      "cim": "WordPress",
+      "ikon": "🌐",
+      "url": "https://fegyvertar.wpkurzus.hu/c/wordpress/",
+      "notionId": null,
+      "hossz": null,
+      "kesz": true
+    },
+    {
+      "cim": "WooCommerce",
+      "ikon": "🛒",
+      "url": "https://fegyvertar.wpkurzus.hu/c/woocommerce/",
+      "notionId": null,
+      "hossz": null,
+      "kesz": true
+    },
+    {
+      "cim": "AI",
+      "ikon": "🤖",
+      "url": null,
+      "notionId": null,
+      "hossz": null,
+      "kesz": false
+    }
+  ]
+}

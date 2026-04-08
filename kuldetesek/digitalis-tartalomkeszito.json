@@ -1,0 +1,108 @@
+{
+  "slug": "digitalis-tartalomkeszito",
+  "cim": "Digitális tartalomkészítő",
+  "leiras": "A tartalom az online jelenlét egyik legfontosabb építőköve. A Digitális tartalomkészítő Karrier Küldetés során megtanulhatod, hogyan hozz létre figyelemfelkeltő szöveges, képi vagy videós anyagokat. Akár márkaként, akár tartalomgyártóként építenél közösséget, ez a küldetés segít elindulni.",
+  "tema": "regi",
+  "vegcel": {
+    "cim": "Digitális tartalomkészítő",
+    "ikon": "🎯"
+  },
+  "kurzusok": [
+    {
+      "cim": "Milyen vállalkozást indíts",
+      "ikon": "🚀",
+      "url": "https://fegyvertar.wpkurzus.hu/c/milyen-vallalkozast-indits/",
+      "notionId": null,
+      "hossz": null,
+      "kesz": true
+    },
+    {
+      "cim": "Marketing rendszerek",
+      "ikon": "📣",
+      "url": "https://fegyvertar.wpkurzus.hu/c/marketing-rendszerek/",
+      "notionId": null,
+      "hossz": null,
+      "kesz": true
+    },
+    {
+      "cim": "Piaci intelligencia",
+      "ikon": "🧠",
+      "url": "https://fegyvertar.wpkurzus.hu/c/piaci-intelligencia/",
+      "notionId": null,
+      "hossz": null,
+      "kesz": true
+    },
+    {
+      "cim": "Szövegírás",
+      "ikon": "✍️",
+      "url": null,
+      "notionId": null,
+      "hossz": null,
+      "kesz": false
+    },
+    {
+      "cim": "Közösségi média",
+      "ikon": "📱",
+      "url": null,
+      "notionId": null,
+      "hossz": null,
+      "kesz": false
+    },
+    {
+      "cim": "Vizuális design",
+      "ikon": "🎨",
+      "url": "https://fegyvertar.wpkurzus.hu/c/vizualis-design/",
+      "notionId": null,
+      "hossz": null,
+      "kesz": true
+    },
+    {
+      "cim": "Videózás",
+      "ikon": "🎥",
+      "url": "https://fegyvertar.wpkurzus.hu/c/videozas/",
+      "notionId": null,
+      "hossz": null,
+      "kesz": true
+    },
+    {
+      "cim": "Videóvágás",
+      "ikon": "✂️",
+      "url": null,
+      "notionId": null,
+      "hossz": null,
+      "kesz": false
+    },
+    {
+      "cim": "Fotózás alapjai",
+      "ikon": "📷",
+      "url": "https://fegyvertar.wpkurzus.hu/c/fotozas-alapjai/",
+      "notionId": null,
+      "hossz": null,
+      "kesz": true
+    },
+    {
+      "cim": "Mobilfotózás",
+      "ikon": "📲",
+      "url": "https://fegyvertar.wpkurzus.hu/c/mobilfotozas/",
+      "notionId": null,
+      "hossz": null,
+      "kesz": true
+    },
+    {
+      "cim": "Canva",
+      "ikon": "🖌️",
+      "url": "https://fegyvertar.wpkurzus.hu/c/canva/",
+      "notionId": null,
+      "hossz": null,
+      "kesz": true
+    },
+    {
+      "cim": "AI",
+      "ikon": "🤖",
+      "url": null,
+      "notionId": null,
+      "hossz": null,
+      "kesz": false
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "slug": "e-mail-marketing-manager",
+  "cim": "E-mail Marketing Manager",
+  "leiras": "Az e-mail továbbra is az egyik leghatékonyabb online kommunikációs és értékesítési csatorna. Az E-mail Marketing Manager pozícióra célzott Karrier Küldetésünk abban segít, hogy elsajátítsd az e-mail kampányok tervezését, automatizálását és optimalizálását. Alkalmazottként vagy szabadúszóként is sikeresen elindulhatsz ezen az úton.",
+  "tema": "regi",
+  "vegcel": {
+    "cim": "E-mail Marketing Manager",
+    "ikon": "📧"
+  },
+  "kurzusok": [
+    {
+      "cim": "Milyen vállalkozást indíts",
+      "ikon": "🚀",
+      "url": "https://fegyvertar.wpkurzus.hu/c/milyen-vallalkozast-indits/",
+      "notionId": null,
+      "hossz": null,
+      "kesz": true
+    },
+    {
+      "cim": "Marketing rendszerek",
+      "ikon": "📣",
+      "url": "https://fegyvertar.wpkurzus.hu/c/marketing-rendszerek/",
+      "notionId": null,
+      "hossz": null,
+      "kesz": true
+    },
+    {
+      "cim": "Piaci intelligencia",
+      "ikon": "🧠",
+      "url": "https://fegyvertar.wpkurzus.hu/c/piaci-intelligencia/",
+      "notionId": null,
+      "hossz": null,
+      "kesz": true
+    },
+    {
+      "cim": "Szövegírás",
+      "ikon": "✍️",
+      "url": null,
+      "notionId": null,
+      "hossz": null,
+      "kesz": false
+    },
+    {
+      "cim": "E-mail marketing",
+      "ikon": "📧",
+      "url": null,
+      "notionId": null,
+      "hossz": null,
+      "kesz": false
+    },
+    {
+      "cim": "Vizuális design",
+      "ikon": "🎨",
+      "url": "https://fegyvertar.wpkurzus.hu/c/vizualis-design/",
+      "notionId": null,
+      "hossz": null,
+      "kesz": true
+    },
+    {
+      "cim": "AI",
+      "ikon": "🤖",
+      "url": null,
+      "notionId": null,
+      "hossz": null,
+      "kesz": false
+    }
+  ]
+}

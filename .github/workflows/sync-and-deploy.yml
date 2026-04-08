@@ -1,0 +1,93 @@
+name: Notion sync, build & deploy
+
+on:
+  schedule:
+    # Naponta 06:00 UTC = 08:00 CET / 07:00 CEST
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'template/**'
+      - 'temak/**'
+      - 'scripts/**'
+      - 'kuldetesek/**'
+      - '.github/workflows/sync-and-deploy.yml'
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: 'pages'
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Install Playwright Chromium
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: Notion sync
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          KARRIER_DB_ID: ${{ secrets.KARRIER_DB_ID }}
+        run: |
+          if [ -z "$NOTION_TOKEN" ] || [ -z "$KARRIER_DB_ID" ]; then
+            echo "::warning::NOTION_TOKEN vagy KARRIER_DB_ID hianyzik, sync kihagyva"
+          else
+            node scripts/notion-sync.mjs
+          fi
+
+      - name: Build all küldetések
+        run: node scripts/build.mjs --all
+
+      - name: Commit synced JSON files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add kuldetesek
+          if ! git diff --staged --quiet; then
+            git commit -m "chore: notion sync $(date -u +%Y-%m-%d) [skip ci]"
+            git push
+          else
+            echo "Nincs változás a kuldetesek/ mappában."
+          fi
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
