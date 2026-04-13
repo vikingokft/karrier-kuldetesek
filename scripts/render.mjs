@@ -42,8 +42,8 @@ function validateTema(tema) {
 
 export async function render(slug) {
   const kuldetes = await loadKuldetes(slug);
-  const tema = kuldetes.tema || 'regi';
-  validateTema(tema);
+  // Minden küldetés a v3 témát használja (a Notion sync felülírhatja a JSON-t)
+  const tema = 'v3';
 
   const css = await loadCss(tema);
   const template = await loadTemplate();
