@@ -6,7 +6,12 @@
 <title>{{cim}} — Karrierküldetés</title>
 {{#if standalone}}
 <style>
-body { margin: 0; padding: 40px 20px; background: var(--kk-page-bg, #f0e9df); min-height: 100vh; }
+body {
+  margin: 0; padding: 40px 20px; min-height: 100vh;
+  background-color: var(--kk-page-bg, #cdd0e1);
+  background-image: radial-gradient(circle, rgba(0,0,0,0.06) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
 </style>
 {{/if}}
 <style>
@@ -29,7 +34,7 @@ body { margin: 0; padding: 40px 20px; background: var(--kk-page-bg, #f0e9df); mi
           <div class="kk-card-num">{{kkNum @index}}</div>
           <div class="kk-card-ikon">{{ikon}}</div>
           <div class="kk-card-cim">{{cim}}</div>
-          {{#if hossz}}<div class="kk-card-hossz">{{hossz}} óra</div>{{/if}}
+          {{#if hossz}}<div class="kk-card-hossz">{{kkHossz hossz}}</div>{{/if}}
         </a>
         {{else}}
         <div class="kk-card kk-card--hamarosan" data-idx="{{@index}}" aria-disabled="true">
@@ -37,7 +42,7 @@ body { margin: 0; padding: 40px 20px; background: var(--kk-page-bg, #f0e9df); mi
           <div class="kk-card-badge">Hamarosan</div>
           <div class="kk-card-ikon">{{ikon}}</div>
           <div class="kk-card-cim">{{cim}}</div>
-          {{#if hossz}}<div class="kk-card-hossz">{{hossz}} óra</div>{{/if}}
+          {{#if hossz}}<div class="kk-card-hossz">{{kkHossz hossz}}</div>{{/if}}
         </div>
         {{/if}}
       {{/each}}
@@ -82,66 +87,82 @@ body { margin: 0; padding: 40px 20px; background: var(--kk-page-bg, #f0e9df); mi
     svg.setAttribute('height', rect.height);
     svg.setAttribute('viewBox', '0 0 ' + rect.width + ' ' + rect.height);
 
-    var defs = document.createElementNS(SVG_NS, 'defs');
-    var marker = document.createElementNS(SVG_NS, 'marker');
-    marker.setAttribute('id', 'kk-arrow-head-{{slug}}');
-    marker.setAttribute('viewBox', '0 0 10 10');
-    marker.setAttribute('refX', '8');
-    marker.setAttribute('refY', '5');
-    marker.setAttribute('markerWidth', '6');
-    marker.setAttribute('markerHeight', '6');
-    marker.setAttribute('orient', 'auto-start-reverse');
-    var path = document.createElementNS(SVG_NS, 'path');
-    path.setAttribute('d', 'M 0 0 L 10 5 L 0 10 z');
-    path.setAttribute('class', 'kk-arrow-head');
-    marker.appendChild(path);
-    defs.appendChild(marker);
-    svg.appendChild(defs);
-
     var cards = Array.prototype.slice.call(grid.children)
       .sort(function(a, b) { return parseInt(a.dataset.kkSeq || 999) - parseInt(b.dataset.kkSeq || 999); });
+
+    var PAD = 6;       // gap between card edge and arrow start/tip
+    var HEAD_L = 16;   // arrowhead length
+    var HEAD_W = 14;   // arrowhead full width
 
     for (var i = 0; i < cards.length - 1; i++) {
       var from = cards[i].getBoundingClientRect();
       var to = cards[i+1].getBoundingClientRect();
       var sameRow = cards[i].dataset.kkRow === cards[i+1].dataset.kkRow;
-      var x1, y1, x2, y2, d;
+
+      var isDisabled = cards[i].classList.contains('kk-card--hamarosan');
+      var color = isDisabled ? getComputedStyle(root).getPropertyValue('--kk-card-bg-disabled').trim()
+                             : getComputedStyle(root).getPropertyValue('--kk-card-bg').trim();
+
+      var sx, sy, ex, ey, hd;
+
       if (sameRow) {
-        // horizontal — direction depends on row parity (snake)
         var row = parseInt(cards[i].dataset.kkRow);
-        var leftToRight = (row % 2 === 0);
-        if (leftToRight) {
-          x1 = from.right - rect.left;
-          x2 = to.left - rect.left;
+        var ltr = (row % 2 === 0);
+        sy = from.top + from.height / 2 - rect.top;
+        ey = to.top + to.height / 2 - rect.top;
+        if (ltr) {
+          sx = from.right - rect.left + PAD;
+          ex = to.left - rect.left - PAD;
         } else {
-          x1 = from.left - rect.left;
-          x2 = to.right - rect.left;
+          sx = from.left - rect.left - PAD;
+          ex = to.right - rect.left + PAD;
         }
-        y1 = from.top + from.height/2 - rect.top;
-        y2 = to.top + to.height/2 - rect.top;
-        d = 'M ' + x1 + ' ' + y1 + ' L ' + x2 + ' ' + y2;
+        // shaft ends at arrowhead base
+        var dir = ex > sx ? 1 : -1;
+        var shaftEnd = ex - dir * HEAD_L;
+        // shaft
+        var shaft = document.createElementNS(SVG_NS, 'line');
+        shaft.setAttribute('x1', sx);
+        shaft.setAttribute('y1', sy);
+        shaft.setAttribute('x2', shaftEnd);
+        shaft.setAttribute('y2', ey);
+        shaft.setAttribute('class', 'kk-arrow-line');
+        shaft.setAttribute('stroke', color);
+        svg.appendChild(shaft);
+        // arrowhead
+        var hw = HEAD_W / 2;
+        hd = document.createElementNS(SVG_NS, 'polygon');
+        hd.setAttribute('points',
+          shaftEnd + ',' + (ey - hw) + ' ' +
+          ex + ',' + ey + ' ' +
+          shaftEnd + ',' + (ey + hw));
+        hd.setAttribute('fill', color);
+        svg.appendChild(hd);
       } else {
-        // Row change — L-shape from bottom of `from` to top of `to`
-        var fx = (from.left + from.right)/2 - rect.left;
-        var tx = (to.left + to.right)/2 - rect.left;
-        y1 = from.bottom - rect.top;
-        y2 = to.top - rect.top;
-        var midY = (y1 + y2) / 2;
-        if (Math.abs(fx - tx) < 2) {
-          d = 'M ' + fx + ' ' + y1 + ' L ' + fx + ' ' + y2;
-        } else {
-          // vertical down, then horizontal, then vertical down into target
-          d = 'M ' + fx + ' ' + y1 +
-              ' L ' + fx + ' ' + midY +
-              ' L ' + tx + ' ' + midY +
-              ' L ' + tx + ' ' + y2;
-        }
+        // vertical — straight down from `from` center
+        var fx = (from.left + from.right) / 2 - rect.left;
+        sy = from.bottom - rect.top + PAD;
+        ey = to.top - rect.top - PAD;
+        var shaftEndY = ey - HEAD_L;
+        // shaft
+        var vshaft = document.createElementNS(SVG_NS, 'line');
+        vshaft.setAttribute('x1', fx);
+        vshaft.setAttribute('y1', sy);
+        vshaft.setAttribute('x2', fx);
+        vshaft.setAttribute('y2', shaftEndY);
+        vshaft.setAttribute('class', 'kk-arrow-line');
+        vshaft.setAttribute('stroke', color);
+        svg.appendChild(vshaft);
+        // arrowhead
+        var vhw = HEAD_W / 2;
+        hd = document.createElementNS(SVG_NS, 'polygon');
+        hd.setAttribute('points',
+          (fx - vhw) + ',' + shaftEndY + ' ' +
+          fx + ',' + ey + ' ' +
+          (fx + vhw) + ',' + shaftEndY);
+        hd.setAttribute('fill', color);
+        svg.appendChild(hd);
       }
-      var line = document.createElementNS(SVG_NS, 'path');
-      line.setAttribute('d', d);
-      line.setAttribute('class', 'kk-arrow-line');
-      line.setAttribute('marker-end', 'url(#kk-arrow-head-{{slug}})');
-      svg.appendChild(line);
     }
   }
 

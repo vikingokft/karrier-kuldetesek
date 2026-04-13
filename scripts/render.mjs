@@ -12,6 +12,12 @@ Handlebars.registerHelper('kkNum', function(index) {
   return String(index + 1).padStart(2, '0');
 });
 
+Handlebars.registerHelper('kkHossz', function(hossz) {
+  if (hossz == null) return '';
+  if (Number.isInteger(hossz)) return hossz + ' óra';
+  return hossz + ' óra';
+});
+
 async function loadTemplate() {
   const src = await readFile(join(ROOT, 'template/index.hbs'), 'utf8');
   return Handlebars.compile(src, { noEscape: false });
@@ -29,8 +35,8 @@ async function loadKuldetes(slug) {
 }
 
 function validateTema(tema) {
-  if (!['regi', 'uj'].includes(tema)) {
-    throw new Error(`Ismeretlen téma: "${tema}". Engedélyezett: regi, uj`);
+  if (!['regi', 'uj', 'v3'].includes(tema)) {
+    throw new Error(`Ismeretlen téma: "${tema}". Engedélyezett: regi, uj, v3`);
   }
 }
 
