@@ -69,13 +69,13 @@ body {
     var style = window.getComputedStyle(grid);
     var cols = style.gridTemplateColumns.split(' ').length;
     var cards = Array.prototype.slice.call(grid.children);
-    cards.forEach(function(c){ c.style.order = ''; c.dataset.kkRow = ''; c.dataset.kkCol = ''; });
+    cards.forEach(function(c){ c.style.order = ''; c.style.gridColumn = ''; c.style.gridRow = ''; c.dataset.kkRow = ''; c.dataset.kkCol = ''; });
     cards.forEach(function(card, i) {
       var row = Math.floor(i / cols);
       var colInRow = i % cols;
       var visualCol = (row % 2 === 0) ? colInRow : (cols - 1 - colInRow);
-      var order = row * cols + visualCol;
-      card.style.order = order;
+      card.style.gridColumn = (visualCol + 1).toString();
+      card.style.gridRow = (row + 1).toString();
       card.dataset.kkRow = row;
       card.dataset.kkCol = visualCol;
       card.dataset.kkSeq = i;
