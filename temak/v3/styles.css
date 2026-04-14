@@ -219,10 +219,8 @@
   display: none;
 }
 
-/* ===== VÉGCÉL — separate block below grid ===== */
+/* ===== VÉGCÉL — aligned below last card ===== */
 .kk-root[data-tema="v3"] .kk-vegcel-wrap {
-  display: flex;
-  justify-content: center;
   margin-top: 44px;
   position: relative;
   z-index: 1;
@@ -231,10 +229,9 @@
   background: var(--kk-vegcel-bg);
   color: var(--kk-vegcel-text);
   min-height: 100px;
-  min-width: 320px;
   justify-content: center;
   align-items: center;
-  padding: 28px 48px;
+  padding: 28px 24px;
 }
 .kk-root[data-tema="v3"] .kk-card--vegcel .kk-card-ikon {
   display: none;

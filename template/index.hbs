@@ -172,27 +172,38 @@ body {
     }
   }
 
-  function drawVegcelArrow() {
+  function positionAndDrawVegcel() {
     var vegcel = document.getElementById('kk-vegcel-{{slug}}');
     var vegSvg = document.getElementById('kk-vegcel-arrow-{{slug}}');
-    if (!vegcel || !vegSvg) return;
-    while (vegSvg.firstChild) vegSvg.removeChild(vegSvg.firstChild);
+    var vegWrap = vegcel ? vegcel.parentElement : null;
+    if (!vegcel || !vegSvg || !vegWrap) return;
 
+    var cards = Array.prototype.slice.call(grid.children)
+      .sort(function(a, b) { return parseInt(a.dataset.kkSeq || 999) - parseInt(b.dataset.kkSeq || 999); });
+    if (cards.length === 0) return;
+    var lastCard = cards[cards.length - 1];
+
+    // Position vegcel wrap so the card aligns under the last course card
+    var lastRect = lastCard.getBoundingClientRect();
+    var wrapRect = vegWrap.getBoundingClientRect();
+    var offsetLeft = lastRect.left - wrapRect.left;
+    vegcel.style.width = lastRect.width + 'px';
+    vegcel.style.marginLeft = offsetLeft + 'px';
+
+    // Draw arrow
+    while (vegSvg.firstChild) vegSvg.removeChild(vegSvg.firstChild);
     var kkRoot = root.closest('.kk-root');
     var rootRect = kkRoot.getBoundingClientRect();
     vegSvg.setAttribute('width', rootRect.width);
     vegSvg.setAttribute('height', rootRect.height);
     vegSvg.setAttribute('viewBox', '0 0 ' + rootRect.width + ' ' + rootRect.height);
 
-    var cards = Array.prototype.slice.call(grid.children)
-      .sort(function(a, b) { return parseInt(a.dataset.kkSeq || 999) - parseInt(b.dataset.kkSeq || 999); });
-    if (cards.length === 0) return;
-    var lastCard = cards[cards.length - 1];
     var color = getCardColor(lastCard);
+    // Re-read rects after positioning
     drawVArrow(vegSvg, rootRect, lastCard.getBoundingClientRect(), vegcel.getBoundingClientRect(), color);
   }
 
-  function update() { applySnakeOrder(); drawArrows(); drawVegcelArrow(); }
+  function update() { applySnakeOrder(); drawArrows(); positionAndDrawVegcel(); }
   update();
   if (window.ResizeObserver) {
     new ResizeObserver(update).observe(root.closest('.kk-root'));
