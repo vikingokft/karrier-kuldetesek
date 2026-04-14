@@ -69,10 +69,15 @@ body {
     var style = window.getComputedStyle(grid);
     var cols = style.gridTemplateColumns.split(' ').length;
     var cards = Array.prototype.slice.call(grid.children);
-    cards.forEach(function(c){ c.style.order = ''; c.style.gridColumn = ''; c.style.gridRow = ''; c.dataset.kkRow = ''; c.dataset.kkCol = ''; });
+    cards.forEach(function(c){
+      c.style.gridColumn = ''; c.style.gridRow = '';
+      c.dataset.kkRow = ''; c.dataset.kkCol = ''; c.dataset.kkSeq = '';
+    });
     cards.forEach(function(card, i) {
       var row = Math.floor(i / cols);
       var colInRow = i % cols;
+      // Even rows: left-to-right (0,1,2,3)
+      // Odd rows: right-to-left (3,2,1,0)
       var visualCol = (row % 2 === 0) ? colInRow : (cols - 1 - colInRow);
       card.style.gridColumn = (visualCol + 1).toString();
       card.style.gridRow = (row + 1).toString();
@@ -80,6 +85,61 @@ body {
       card.dataset.kkCol = visualCol;
       card.dataset.kkSeq = i;
     });
+  }
+
+  function getCardColor(card) {
+    var kkRoot = root.closest('.kk-root');
+    var isDisabled = card.classList.contains('kk-card--hamarosan');
+    return isDisabled ? getComputedStyle(kkRoot).getPropertyValue('--kk-card-bg-disabled').trim()
+                      : getComputedStyle(kkRoot).getPropertyValue('--kk-card-bg').trim();
+  }
+
+  function drawHArrow(svgEl, refRect, fromRect, toRect, color, ltr) {
+    var PAD = 6, HEAD_L = 16, HEAD_W = 14;
+    var sy = fromRect.top + fromRect.height / 2 - refRect.top;
+    var ey = toRect.top + toRect.height / 2 - refRect.top;
+    var sx, ex;
+    if (ltr) {
+      sx = fromRect.right - refRect.left + PAD;
+      ex = toRect.left - refRect.left - PAD;
+    } else {
+      sx = fromRect.left - refRect.left - PAD;
+      ex = toRect.right - refRect.left + PAD;
+    }
+    var dir = ex > sx ? 1 : -1;
+    var shaftEnd = ex - dir * HEAD_L;
+    var shaft = document.createElementNS(SVG_NS, 'line');
+    shaft.setAttribute('x1', sx); shaft.setAttribute('y1', sy);
+    shaft.setAttribute('x2', shaftEnd); shaft.setAttribute('y2', ey);
+    shaft.setAttribute('class', 'kk-arrow-line');
+    shaft.setAttribute('stroke', color);
+    svgEl.appendChild(shaft);
+    var hw = HEAD_W / 2;
+    var hd = document.createElementNS(SVG_NS, 'polygon');
+    hd.setAttribute('points',
+      shaftEnd+','+(ey-hw)+' '+ex+','+ey+' '+shaftEnd+','+(ey+hw));
+    hd.setAttribute('fill', color);
+    svgEl.appendChild(hd);
+  }
+
+  function drawVArrow(svgEl, refRect, fromRect, toRect, color) {
+    var PAD = 6, HEAD_L = 16, HEAD_W = 14;
+    var fx = (fromRect.left + fromRect.right) / 2 - refRect.left;
+    var sy = fromRect.bottom - refRect.top + PAD;
+    var ey = toRect.top - refRect.top - PAD;
+    var shaftEndY = ey - HEAD_L;
+    var vshaft = document.createElementNS(SVG_NS, 'line');
+    vshaft.setAttribute('x1', fx); vshaft.setAttribute('y1', sy);
+    vshaft.setAttribute('x2', fx); vshaft.setAttribute('y2', shaftEndY);
+    vshaft.setAttribute('class', 'kk-arrow-line');
+    vshaft.setAttribute('stroke', color);
+    svgEl.appendChild(vshaft);
+    var vhw = HEAD_W / 2;
+    var hd = document.createElementNS(SVG_NS, 'polygon');
+    hd.setAttribute('points',
+      (fx-vhw)+','+shaftEndY+' '+fx+','+ey+' '+(fx+vhw)+','+shaftEndY);
+    hd.setAttribute('fill', color);
+    svgEl.appendChild(hd);
   }
 
   function drawArrows() {
@@ -92,78 +152,22 @@ body {
     var cards = Array.prototype.slice.call(grid.children)
       .sort(function(a, b) { return parseInt(a.dataset.kkSeq || 999) - parseInt(b.dataset.kkSeq || 999); });
 
-    var PAD = 6;       // gap between card edge and arrow start/tip
-    var HEAD_L = 16;   // arrowhead length
-    var HEAD_W = 14;   // arrowhead full width
-
     for (var i = 0; i < cards.length - 1; i++) {
-      var from = cards[i].getBoundingClientRect();
-      var to = cards[i+1].getBoundingClientRect();
-      var sameRow = cards[i].dataset.kkRow === cards[i+1].dataset.kkRow;
-
-      var isDisabled = cards[i].classList.contains('kk-card--hamarosan');
-      var color = isDisabled ? getComputedStyle(root).getPropertyValue('--kk-card-bg-disabled').trim()
-                             : getComputedStyle(root).getPropertyValue('--kk-card-bg').trim();
-
-      var sx, sy, ex, ey, hd;
+      var fromCard = cards[i];
+      var toCard = cards[i+1];
+      var from = fromCard.getBoundingClientRect();
+      var to = toCard.getBoundingClientRect();
+      var sameRow = fromCard.dataset.kkRow === toCard.dataset.kkRow;
+      var color = getCardColor(fromCard);
 
       if (sameRow) {
-        var row = parseInt(cards[i].dataset.kkRow);
+        var row = parseInt(fromCard.dataset.kkRow);
         var ltr = (row % 2 === 0);
-        sy = from.top + from.height / 2 - rect.top;
-        ey = to.top + to.height / 2 - rect.top;
-        if (ltr) {
-          sx = from.right - rect.left + PAD;
-          ex = to.left - rect.left - PAD;
-        } else {
-          sx = from.left - rect.left - PAD;
-          ex = to.right - rect.left + PAD;
-        }
-        // shaft ends at arrowhead base
-        var dir = ex > sx ? 1 : -1;
-        var shaftEnd = ex - dir * HEAD_L;
-        // shaft
-        var shaft = document.createElementNS(SVG_NS, 'line');
-        shaft.setAttribute('x1', sx);
-        shaft.setAttribute('y1', sy);
-        shaft.setAttribute('x2', shaftEnd);
-        shaft.setAttribute('y2', ey);
-        shaft.setAttribute('class', 'kk-arrow-line');
-        shaft.setAttribute('stroke', color);
-        svg.appendChild(shaft);
-        // arrowhead
-        var hw = HEAD_W / 2;
-        hd = document.createElementNS(SVG_NS, 'polygon');
-        hd.setAttribute('points',
-          shaftEnd + ',' + (ey - hw) + ' ' +
-          ex + ',' + ey + ' ' +
-          shaftEnd + ',' + (ey + hw));
-        hd.setAttribute('fill', color);
-        svg.appendChild(hd);
+        drawHArrow(svg, rect, from, to, color, ltr);
       } else {
-        // vertical — straight down from `from` center
-        var fx = (from.left + from.right) / 2 - rect.left;
-        sy = from.bottom - rect.top + PAD;
-        ey = to.top - rect.top - PAD;
-        var shaftEndY = ey - HEAD_L;
-        // shaft
-        var vshaft = document.createElementNS(SVG_NS, 'line');
-        vshaft.setAttribute('x1', fx);
-        vshaft.setAttribute('y1', sy);
-        vshaft.setAttribute('x2', fx);
-        vshaft.setAttribute('y2', shaftEndY);
-        vshaft.setAttribute('class', 'kk-arrow-line');
-        vshaft.setAttribute('stroke', color);
-        svg.appendChild(vshaft);
-        // arrowhead
-        var vhw = HEAD_W / 2;
-        hd = document.createElementNS(SVG_NS, 'polygon');
-        hd.setAttribute('points',
-          (fx - vhw) + ',' + shaftEndY + ' ' +
-          fx + ',' + ey + ' ' +
-          (fx + vhw) + ',' + shaftEndY);
-        hd.setAttribute('fill', color);
-        svg.appendChild(hd);
+        // Row transition: vertical arrow from `from` down to `to`
+        // Both cards are in the same column (last col of even row = first col of odd row, etc.)
+        drawVArrow(svg, rect, from, to, color);
       }
     }
   }
@@ -180,45 +184,12 @@ body {
     vegSvg.setAttribute('height', rootRect.height);
     vegSvg.setAttribute('viewBox', '0 0 ' + rootRect.width + ' ' + rootRect.height);
 
-    // Find last card in snake order
     var cards = Array.prototype.slice.call(grid.children)
       .sort(function(a, b) { return parseInt(a.dataset.kkSeq || 999) - parseInt(b.dataset.kkSeq || 999); });
     if (cards.length === 0) return;
     var lastCard = cards[cards.length - 1];
-    var from = lastCard.getBoundingClientRect();
-    var to = vegcel.getBoundingClientRect();
-
-    var isDisabled = lastCard.classList.contains('kk-card--hamarosan');
-    var color = isDisabled ? getComputedStyle(kkRoot).getPropertyValue('--kk-card-bg-disabled').trim()
-                           : getComputedStyle(kkRoot).getPropertyValue('--kk-card-bg').trim();
-
-    var PAD = 6;
-    var HEAD_L = 16;
-    var HEAD_W = 14;
-
-    var fx = (from.left + from.right) / 2 - rootRect.left;
-    var tx = (to.left + to.right) / 2 - rootRect.left;
-    var sy = from.bottom - rootRect.top + PAD;
-    var ey = to.top - rootRect.top - PAD;
-    var shaftEndY = ey - HEAD_L;
-
-    var vshaft = document.createElementNS(SVG_NS, 'line');
-    vshaft.setAttribute('x1', fx);
-    vshaft.setAttribute('y1', sy);
-    vshaft.setAttribute('x2', tx);
-    vshaft.setAttribute('y2', shaftEndY);
-    vshaft.setAttribute('class', 'kk-arrow-line');
-    vshaft.setAttribute('stroke', color);
-    vegSvg.appendChild(vshaft);
-
-    var vhw = HEAD_W / 2;
-    var hd = document.createElementNS(SVG_NS, 'polygon');
-    hd.setAttribute('points',
-      (tx - vhw) + ',' + shaftEndY + ' ' +
-      tx + ',' + ey + ' ' +
-      (tx + vhw) + ',' + shaftEndY);
-    hd.setAttribute('fill', color);
-    vegSvg.appendChild(hd);
+    var color = getCardColor(lastCard);
+    drawVArrow(vegSvg, rootRect, lastCard.getBoundingClientRect(), vegcel.getBoundingClientRect(), color);
   }
 
   function update() { applySnakeOrder(); drawArrows(); drawVegcelArrow(); }
