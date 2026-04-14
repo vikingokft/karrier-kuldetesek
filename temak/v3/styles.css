@@ -228,10 +228,10 @@
 .kk-root[data-tema="v3"] .kk-card--vegcel {
   background: var(--kk-vegcel-bg);
   color: var(--kk-vegcel-text);
-  min-height: 100px;
+  min-height: 0;
   justify-content: center;
   align-items: center;
-  padding: 28px 24px;
+  padding: 20px 24px;
 }
 .kk-root[data-tema="v3"] .kk-card--vegcel .kk-card-ikon {
   display: none;
