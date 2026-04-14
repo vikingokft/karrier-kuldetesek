@@ -33,12 +33,12 @@
       "kesz": true
     },
     {
-      "cim": "Szövegírás",
+      "cim": "Marketing szövegírás",
       "ikon": "✍️",
-      "url": null,
+      "url": "https://fegyvertar.wpkurzus.hu/c/marketing-szovegiras/",
       "notionId": null,
       "hossz": null,
-      "kesz": false
+      "kesz": true
     },
     {
       "cim": "Közösségi média",
@@ -67,10 +67,10 @@
     {
       "cim": "Videóvágás",
       "ikon": "✂️",
-      "url": null,
+      "url": "https://fegyvertar.wpkurzus.hu/c/videovagas-adobe-premiere-pro/",
       "notionId": null,
       "hossz": null,
-      "kesz": false
+      "kesz": true
     },
     {
       "cim": "Fotózás alapjai",
@@ -97,13 +97,12 @@
       "kesz": true
     },
     {
-      "cim": "AI",
+      "cim": "AI Alapozó",
       "ikon": "🤖",
-      "url": null,
+      "url": "https://fegyvertar.wpkurzus.hu/c/ai-alapozo/",
       "notionId": null,
       "hossz": null,
-      "kesz": false
+      "kesz": true
     }
   ]
 }
-# Notion sync trigger

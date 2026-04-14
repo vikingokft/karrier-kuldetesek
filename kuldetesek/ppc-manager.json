@@ -17,7 +17,7 @@
       "kesz": true
     },
     {
-      "cim": "Marketing rendszerek",
+      "cim": "Ügyfélszerző marketing rendszerek",
       "ikon": "📣",
       "url": "https://fegyvertar.wpkurzus.hu/c/marketing-rendszerek/",
       "notionId": null,
@@ -33,12 +33,12 @@
       "kesz": true
     },
     {
-      "cim": "Szövegírás",
+      "cim": "Marketing szövegírás",
       "ikon": "✍️",
-      "url": null,
+      "url": "https://fegyvertar.wpkurzus.hu/c/marketing-szovegiras/",
       "notionId": null,
       "hossz": null,
-      "kesz": false
+      "kesz": true
     },
     {
       "cim": "Hirdetések készítése",
@@ -113,12 +113,12 @@
       "kesz": true
     },
     {
-      "cim": "AI",
+      "cim": "AI Alapozó",
       "ikon": "🤖",
-      "url": null,
+      "url": "https://fegyvertar.wpkurzus.hu/c/ai-alapozo/",
       "notionId": null,
       "hossz": null,
-      "kesz": false
+      "kesz": true
     }
   ]
 }
