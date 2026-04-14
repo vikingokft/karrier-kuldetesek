@@ -46,13 +46,15 @@ body {
         </div>
         {{/if}}
       {{/each}}
-      <div class="kk-card kk-card--vegcel" data-idx="vegcel">
-        <div class="kk-card-ikon">{{vegcel.ikon}}</div>
-        <div class="kk-card-cim">{{vegcel.cim}}</div>
-      </div>
     </div>
     <svg class="kk-arrows" aria-hidden="true"></svg>
   </div>
+  <div class="kk-vegcel-wrap">
+    <div class="kk-card kk-card--vegcel" id="kk-vegcel-{{slug}}">
+      <div class="kk-card-cim">{{vegcel.cim}}</div>
+    </div>
+  </div>
+  <svg class="kk-arrows kk-arrows--vegcel" id="kk-vegcel-arrow-{{slug}}" aria-hidden="true"></svg>
 </div>
 
 <script>
@@ -166,14 +168,66 @@ body {
     }
   }
 
-  function update() { applySnakeOrder(); drawArrows(); }
+  function drawVegcelArrow() {
+    var vegcel = document.getElementById('kk-vegcel-{{slug}}');
+    var vegSvg = document.getElementById('kk-vegcel-arrow-{{slug}}');
+    if (!vegcel || !vegSvg) return;
+    while (vegSvg.firstChild) vegSvg.removeChild(vegSvg.firstChild);
+
+    var kkRoot = root.closest('.kk-root');
+    var rootRect = kkRoot.getBoundingClientRect();
+    vegSvg.setAttribute('width', rootRect.width);
+    vegSvg.setAttribute('height', rootRect.height);
+    vegSvg.setAttribute('viewBox', '0 0 ' + rootRect.width + ' ' + rootRect.height);
+
+    // Find last card in snake order
+    var cards = Array.prototype.slice.call(grid.children)
+      .sort(function(a, b) { return parseInt(a.dataset.kkSeq || 999) - parseInt(b.dataset.kkSeq || 999); });
+    if (cards.length === 0) return;
+    var lastCard = cards[cards.length - 1];
+    var from = lastCard.getBoundingClientRect();
+    var to = vegcel.getBoundingClientRect();
+
+    var isDisabled = lastCard.classList.contains('kk-card--hamarosan');
+    var color = isDisabled ? getComputedStyle(kkRoot).getPropertyValue('--kk-card-bg-disabled').trim()
+                           : getComputedStyle(kkRoot).getPropertyValue('--kk-card-bg').trim();
+
+    var PAD = 6;
+    var HEAD_L = 16;
+    var HEAD_W = 14;
+
+    var fx = (from.left + from.right) / 2 - rootRect.left;
+    var tx = (to.left + to.right) / 2 - rootRect.left;
+    var sy = from.bottom - rootRect.top + PAD;
+    var ey = to.top - rootRect.top - PAD;
+    var shaftEndY = ey - HEAD_L;
+
+    var vshaft = document.createElementNS(SVG_NS, 'line');
+    vshaft.setAttribute('x1', fx);
+    vshaft.setAttribute('y1', sy);
+    vshaft.setAttribute('x2', tx);
+    vshaft.setAttribute('y2', shaftEndY);
+    vshaft.setAttribute('class', 'kk-arrow-line');
+    vshaft.setAttribute('stroke', color);
+    vegSvg.appendChild(vshaft);
+
+    var vhw = HEAD_W / 2;
+    var hd = document.createElementNS(SVG_NS, 'polygon');
+    hd.setAttribute('points',
+      (tx - vhw) + ',' + shaftEndY + ' ' +
+      tx + ',' + ey + ' ' +
+      (tx + vhw) + ',' + shaftEndY);
+    hd.setAttribute('fill', color);
+    vegSvg.appendChild(hd);
+  }
+
+  function update() { applySnakeOrder(); drawArrows(); drawVegcelArrow(); }
   update();
   if (window.ResizeObserver) {
-    new ResizeObserver(update).observe(root);
+    new ResizeObserver(update).observe(root.closest('.kk-root'));
   } else {
     window.addEventListener('resize', update);
   }
-  // Re-run after fonts load (card sizes can shift)
   if (document.fonts && document.fonts.ready) {
     document.fonts.ready.then(update);
   }

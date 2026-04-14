@@ -20,6 +20,7 @@
   max-width: 1200px;
   margin: 0 auto;
   box-sizing: border-box;
+  position: relative;
 }
 
 .kk-root[data-tema="v3"] *,
@@ -218,14 +219,19 @@
   display: none;
 }
 
-/* ===== VÉGCÉL — wide rectangle at bottom ===== */
+/* ===== VÉGCÉL — separate block below grid ===== */
+.kk-root[data-tema="v3"] .kk-vegcel-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 44px;
+  position: relative;
+  z-index: 1;
+}
 .kk-root[data-tema="v3"] .kk-card--vegcel {
   background: var(--kk-vegcel-bg);
   color: var(--kk-vegcel-text);
-  min-height: 130px;
-  grid-column: 1 / -1;
-  max-width: 400px;
-  justify-self: center;
+  min-height: 100px;
+  min-width: 320px;
   justify-content: center;
   align-items: center;
   padding: 28px 48px;
@@ -250,6 +256,11 @@
   pointer-events: none;
   z-index: 0;
   overflow: visible;
+}
+.kk-root[data-tema="v3"] .kk-arrows--vegcel {
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 .kk-root[data-tema="v3"] .kk-arrow-line {
   fill: none;
