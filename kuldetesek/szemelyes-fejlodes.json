@@ -1,0 +1,68 @@
+{
+  "slug": "szemelyes-fejlodes",
+  "cim": "Személyes fejlődés út",
+  "leiras": "A Személyes Fejlődés Út során megérted, mi vezérel belülről: milyen mintákat örököltél a gyermekkorodból, milyen személyiségtípus vagy, és miért reagálsz úgy bizonyos helyzetekre, ahogy. A 7 kurzus lépésről lépésre vezet végig az önismereten, az önbecsülésen, a kommunikáción és a hivatáskeresésen át egészen a tartós eredmények eléréséig, úgy, hogy közben ne égj ki.\nAkár vállalkozóként dolgozol önmagadon, akár alkalmazottként keresel értelmet és előrelépést a karrieredben, az általunk összeállított fejlődési út mindenképp hasznos lesz számodra. Bíró Bence pszichológus által kidolgozott, tudományosan megalapozott anyag – amelyet sok gyakorlati feladaton keresztül azonnal a mindennapjaidra is tudsz szabni. A végére nemcsak érteni fogod, ki vagy és mit akarsz, hanem azt is, hogyan jutsz el oda.",
+  "tema": "regi",
+  "vegcel": {
+    "cim": "Személyes fejlődés ",
+    "ikon": "🌱"
+  },
+  "kurzusok": [
+    {
+      "cim": "Az önismeret alapjai",
+      "ikon": "🧠",
+      "url": "https://fegyvertar.wpkurzus.hu/c/az-onismeret-alapjai/",
+      "notionId": null,
+      "hossz": null,
+      "kesz": true
+    },
+    {
+      "cim": "Személyiségtípusok",
+      "ikon": "👤",
+      "url": "https://fegyvertar.wpkurzus.hu/c/szemelyisegtipusok/",
+      "notionId": null,
+      "hossz": null,
+      "kesz": true
+    },
+    {
+      "cim": "MÖKI - Maximális Önbecsülés Kiképzés",
+      "ikon": "📈",
+      "url": "https://fegyvertar.wpkurzus.hu/c/moki-maximalis-onbecsules-kikepzes/",
+      "notionId": null,
+      "hossz": null,
+      "kesz": true
+    },
+    {
+      "cim": "Kommunikációs Mesterkurzus",
+      "ikon": "🗣️",
+      "url": "https://fegyvertar.wpkurzus.hu/c/kommunikacios-mesterkurzus/",
+      "notionId": null,
+      "hossz": null,
+      "kesz": true
+    },
+    {
+      "cim": "Hivatás Mesterkurzus",
+      "ikon": "💼",
+      "url": "https://fegyvertar.wpkurzus.hu/c/hivatas/",
+      "notionId": null,
+      "hossz": null,
+      "kesz": true
+    },
+    {
+      "cim": "Eredmények",
+      "ikon": "🏆",
+      "url": "https://fegyvertar.wpkurzus.hu/c/eredmeny/",
+      "notionId": null,
+      "hossz": null,
+      "kesz": true
+    },
+    {
+      "cim": "Kiégés Mesterkurzus",
+      "ikon": "🔥",
+      "url": "https://fegyvertar.wpkurzus.hu/c/kieges/",
+      "notionId": null,
+      "hossz": null,
+      "kesz": true
+    }
+  ]
+}
