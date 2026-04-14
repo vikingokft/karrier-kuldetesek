@@ -1,0 +1,92 @@
+{
+  "slug": "designer",
+  "cim": "Designer",
+  "leiras": "A Designer Karrier Küldetés során elsajátíthatod a vizuális tervezés alapjait és haladó technikáit. Az Adobe eszközöktől a Figmán és Canván át az arculattervezésig minden fontos készséget megismerhetsz, amivel önálló designerként vagy csapatban dolgozva is értéket teremthetsz.",
+  "tema": "regi",
+  "vegcel": {
+    "cim": "Designer",
+    "ikon": "🎨"
+  },
+  "kurzusok": [
+    {
+      "cim": "Vizuális Design",
+      "ikon": "🎨",
+      "url": "https://fegyvertar.wpkurzus.hu/c/vizualis-design/",
+      "notionId": null,
+      "hossz": null,
+      "kesz": true
+    },
+    {
+      "cim": "Adobe Illustrator",
+      "ikon": "🖊️",
+      "url": "https://fegyvertar.wpkurzus.hu/c/adobe-illustrator/",
+      "notionId": null,
+      "hossz": null,
+      "kesz": true
+    },
+    {
+      "cim": "Adobe Photoshop - Designereknek",
+      "ikon": "📸",
+      "url": "https://fegyvertar.wpkurzus.hu/c/adobe-photoshop-designereknek/",
+      "notionId": null,
+      "hossz": null,
+      "kesz": true
+    },
+    {
+      "cim": "Arculattervezés",
+      "ikon": "🏢",
+      "url": "https://fegyvertar.wpkurzus.hu/c/arculattervezes/",
+      "notionId": null,
+      "hossz": null,
+      "kesz": true
+    },
+    {
+      "cim": "Figma",
+      "ikon": "🎯",
+      "url": "https://fegyvertar.wpkurzus.hu/c/figma/",
+      "notionId": null,
+      "hossz": null,
+      "kesz": true
+    },
+    {
+      "cim": "Canva",
+      "ikon": "🖌️",
+      "url": "https://fegyvertar.wpkurzus.hu/c/canva/",
+      "notionId": null,
+      "hossz": null,
+      "kesz": true
+    },
+    {
+      "cim": "Notion",
+      "ikon": "📋",
+      "url": "https://fegyvertar.wpkurzus.hu/c/notion/",
+      "notionId": null,
+      "hossz": null,
+      "kesz": true
+    },
+    {
+      "cim": "AI Alapozó",
+      "ikon": "🤖",
+      "url": "https://fegyvertar.wpkurzus.hu/c/ai-alapozo/",
+      "notionId": null,
+      "hossz": null,
+      "kesz": true
+    },
+    {
+      "cim": "Ügyfélszerző marketing rendszerek",
+      "ikon": "📣",
+      "url": "https://fegyvertar.wpkurzus.hu/c/marketing-rendszerek/",
+      "notionId": null,
+      "hossz": null,
+      "kesz": true
+    },
+    {
+      "cim": "Milyen vállalkozást indíts",
+      "ikon": "🚀",
+      "url": "https://fegyvertar.wpkurzus.hu/c/milyen-vallalkozast-indits/",
+      "notionId": null,
+      "hossz": null,
+      "kesz": true
+    }
+  ]
+}
