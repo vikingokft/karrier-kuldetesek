@@ -218,14 +218,17 @@
   display: none;
 }
 
-/* ===== VÉGCÉL — follows snake flow naturally ===== */
+/* ===== VÉGCÉL — wide rectangle at bottom ===== */
 .kk-root[data-tema="v3"] .kk-card--vegcel {
   background: var(--kk-vegcel-bg);
   color: var(--kk-vegcel-text);
   min-height: 130px;
+  grid-column: 1 / -1;
+  max-width: 400px;
+  justify-self: center;
   justify-content: center;
   align-items: center;
-  padding: 28px 24px;
+  padding: 28px 48px;
 }
 .kk-root[data-tema="v3"] .kk-card--vegcel .kk-card-ikon {
   display: none;
