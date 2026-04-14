@@ -183,12 +183,13 @@ body {
     if (cards.length === 0) return;
     var lastCard = cards[cards.length - 1];
 
-    // Position vegcel wrap so the card aligns under the last course card
+    // Position vegcel centered under the last course card
     var lastRect = lastCard.getBoundingClientRect();
     var wrapRect = vegWrap.getBoundingClientRect();
-    var offsetLeft = lastRect.left - wrapRect.left;
-    vegcel.style.width = lastRect.width + 'px';
-    vegcel.style.marginLeft = offsetLeft + 'px';
+    var lastCenter = lastRect.left + lastRect.width / 2 - wrapRect.left;
+    var vegWidth = Math.max(lastRect.width * 1.3, 280);
+    vegcel.style.width = vegWidth + 'px';
+    vegcel.style.marginLeft = (lastCenter - vegWidth / 2) + 'px';
 
     // Draw arrow
     while (vegSvg.firstChild) vegSvg.removeChild(vegSvg.firstChild);
