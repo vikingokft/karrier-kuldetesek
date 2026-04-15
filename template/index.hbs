@@ -32,7 +32,7 @@ body {
         {{#if kesz}}
         <a class="kk-card kk-card--kesz" href="{{url}}" data-idx="{{@index}}" target="_blank" rel="noopener">
           <div class="kk-card-num">{{kkNum @index}}</div>
-          <div class="kk-card-ikon">{{ikon}}</div>
+          <div class="kk-card-ikon"><img src="{{assetsBase}}assets/icons/{{kkIkonSlug cim}}.png" alt="{{cim}}" onerror="this.parentElement.textContent='{{ikon}}'"></div>
           <div class="kk-card-cim">{{cim}}</div>
           {{#if hossz}}<div class="kk-card-hossz">{{kkHossz hossz}}</div>{{/if}}
         </a>
@@ -40,7 +40,7 @@ body {
         <div class="kk-card kk-card--hamarosan" data-idx="{{@index}}" aria-disabled="true">
           <div class="kk-card-num">{{kkNum @index}}</div>
           <div class="kk-card-badge">Hamarosan</div>
-          <div class="kk-card-ikon">{{ikon}}</div>
+          <div class="kk-card-ikon"><img src="{{assetsBase}}assets/icons/{{kkIkonSlug cim}}.png" alt="{{cim}}" onerror="this.parentElement.textContent='{{ikon}}'"></div>
           <div class="kk-card-cim">{{cim}}</div>
           {{#if hossz}}<div class="kk-card-hossz">{{kkHossz hossz}}</div>{{/if}}
         </div>

@@ -18,6 +18,15 @@ Handlebars.registerHelper('kkHossz', function(hossz) {
   return hossz + ' óra';
 });
 
+Handlebars.registerHelper('kkIkonSlug', function(cim) {
+  if (!cim) return '';
+  return String(cim)
+    .toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+});
+
 async function loadTemplate() {
   const src = await readFile(join(ROOT, 'template/index.hbs'), 'utf8');
   return Handlebars.compile(src, { noEscape: false });
@@ -48,11 +57,12 @@ export async function render(slug) {
   const css = await loadCss(tema);
   const template = await loadTemplate();
 
-  const context = { ...kuldetes, tema, css, standalone: true };
+  const assetsBase = 'https://vikingokft.github.io/karrier-kuldetesek/';
+  const context = { ...kuldetes, tema, css, assetsBase, standalone: true };
   const fullHtml = template(context);
 
   // Snippet: ugyanaz, de <html>/<head>/<body> nélkül, csak a .kk-root blokk + <style> + <script>
-  const snippetContext = { ...kuldetes, tema, css, standalone: false };
+  const snippetContext = { ...kuldetes, tema, css, assetsBase, standalone: false };
   const snippetFull = template(snippetContext);
   // Kivágjuk a <body>...</body> közötti részt snippet-nek
   const bodyMatch = snippetFull.match(/<body>([\s\S]*?)<\/body>/);
