@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // build.mjs — orchestrator: render + screenshot egy vagy minden küldetéshez
-import { readdir, copyFile, writeFile, mkdir } from 'node:fs/promises';
+import { readdir, copyFile, writeFile, mkdir, cp } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { dirname, join, resolve, basename } from 'node:path';
 import { render } from './render.mjs';
@@ -12,6 +12,8 @@ const ROOT = resolve(__dirname, '..');
 async function copyStaticAssets(slugs) {
   await mkdir(join(ROOT, 'dist'), { recursive: true });
   await copyFile(join(ROOT, 'template/embed.js'), join(ROOT, 'dist/embed.js'));
+  // assets/icons/ mappa másolása a dist/assets/icons/ alá
+  await cp(join(ROOT, 'assets'), join(ROOT, 'dist', 'assets'), { recursive: true });
   // Egy kis index.html a Pages root-ra (debug + lista)
   const items = slugs.map(s =>
     `      <li><a href="${s}.html">${s}</a> &middot; <a href="${s}-snippet.html">snippet</a> &middot; <a href="${s}.png">PNG</a></li>`
