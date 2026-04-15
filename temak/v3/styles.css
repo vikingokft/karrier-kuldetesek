@@ -140,10 +140,10 @@
 /* ===== CARD ICON — bottom-right, overlapping card edge ===== */
 .kk-root[data-tema="v3"] .kk-card-ikon {
   position: absolute;
-  bottom: -14px;
-  right: -10px;
-  width: 40px;
-  height: 40px;
+  bottom: -12px;
+  right: -8px;
+  width: 32px;
+  height: 32px;
   background: #25273e;
   border: 3px solid var(--kk-page-bg);
   border-radius: 50%;
