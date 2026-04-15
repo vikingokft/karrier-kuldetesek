@@ -29,7 +29,7 @@ export async function screenshot(slug, { width = 1400, deviceScaleFactor = 2 } =
     // A .kk-root bounding box + némi extra a kilógó körök miatt
     const box = await page.locator('.kk-root').first().boundingBox();
     if (!box) throw new Error('Nem található .kk-root');
-    const EXTRA = 24; // padding a kilógó sorszám/ikon körök miatt
+    const EXTRA = 60; // padding a kilógó sorszám/ikon körök miatt
     await page.screenshot({
       path: pngPath,
       clip: {
