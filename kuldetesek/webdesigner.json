@@ -1,0 +1,132 @@
+{
+  "slug": "webdesigner",
+  "cim": "Webdesigner",
+  "leiras": "A Webdesigner Karrier Küldetés során elsajátíthatod a webes tervezés és megjelenítés teljes spektrumát. A vizuális designtól és Adobe eszközöktől a Figmán és HTML/CSS-en át a WordPressig minden szükséges készséget megismerhetsz, hogy önállóan tervezhess és építhess weboldalakat ügyfeleidnek.",
+  "tema": "regi",
+  "vegcel": {
+    "cim": "Webdesigner",
+    "ikon": "🖥️"
+  },
+  "kurzusok": [
+    {
+      "cim": "Vizuális Design",
+      "ikon": "🎨",
+      "url": "https://fegyvertar.wpkurzus.hu/c/vizualis-design/",
+      "notionId": null,
+      "hossz": null,
+      "kesz": true
+    },
+    {
+      "cim": "Adobe Illustrator",
+      "ikon": "🖊️",
+      "url": "https://fegyvertar.wpkurzus.hu/c/adobe-illustrator/",
+      "notionId": null,
+      "hossz": null,
+      "kesz": true
+    },
+    {
+      "cim": "Adobe Photoshop - Designereknek",
+      "ikon": "📸",
+      "url": "https://fegyvertar.wpkurzus.hu/c/adobe-photoshop-designereknek/",
+      "notionId": null,
+      "hossz": null,
+      "kesz": true
+    },
+    {
+      "cim": "Arculattervezés",
+      "ikon": "🏢",
+      "url": "https://fegyvertar.wpkurzus.hu/c/arculattervezes/",
+      "notionId": null,
+      "hossz": null,
+      "kesz": true
+    },
+    {
+      "cim": "Figma",
+      "ikon": "🎯",
+      "url": "https://fegyvertar.wpkurzus.hu/c/figma/",
+      "notionId": null,
+      "hossz": null,
+      "kesz": true
+    },
+    {
+      "cim": "Webdesign",
+      "ikon": "🖥️",
+      "url": "https://fegyvertar.wpkurzus.hu/c/webdesign/",
+      "notionId": null,
+      "hossz": null,
+      "kesz": true
+    },
+    {
+      "cim": "HTML + CSS",
+      "ikon": "💻",
+      "url": "https://fegyvertar.wpkurzus.hu/c/html-css/",
+      "notionId": null,
+      "hossz": null,
+      "kesz": true
+    },
+    {
+      "cim": "WordPress",
+      "ikon": "🌐",
+      "url": "https://fegyvertar.wpkurzus.hu/c/wordpress/",
+      "notionId": null,
+      "hossz": null,
+      "kesz": true
+    },
+    {
+      "cim": "WordPress Pro",
+      "ikon": "⚡",
+      "url": "https://fegyvertar.wpkurzus.hu/c/wordpress-pro/",
+      "notionId": null,
+      "hossz": null,
+      "kesz": true
+    },
+    {
+      "cim": "Tárhely",
+      "ikon": "💾",
+      "url": "https://fegyvertar.wpkurzus.hu/c/tarhely/",
+      "notionId": null,
+      "hossz": null,
+      "kesz": true
+    },
+    {
+      "cim": "AI Alapozó",
+      "ikon": "🤖",
+      "url": "https://fegyvertar.wpkurzus.hu/c/ai-alapozo/",
+      "notionId": null,
+      "hossz": null,
+      "kesz": true
+    },
+    {
+      "cim": "Marketing szövegírás",
+      "ikon": "✍️",
+      "url": "https://fegyvertar.wpkurzus.hu/c/marketing-szovegiras/",
+      "notionId": null,
+      "hossz": null,
+      "kesz": true
+    },
+    {
+      "cim": "Notion",
+      "ikon": "📋",
+      "url": "https://fegyvertar.wpkurzus.hu/c/notion/",
+      "notionId": null,
+      "hossz": null,
+      "kesz": true
+    },
+    {
+      "cim": "Milyen vállalkozást indíts",
+      "ikon": "🚀",
+      "url": "https://fegyvertar.wpkurzus.hu/c/milyen-vallalkozast-indits/",
+      "notionId": null,
+      "hossz": null,
+      "kesz": true
+    },
+    {
+      "cim": "Ügyfélszerző marketing rendszerek",
+      "ikon": "📣",
+      "url": "https://fegyvertar.wpkurzus.hu/c/marketing-rendszerek/",
+      "notionId": null,
+      "hossz": null,
+      "kesz": true
+    }
+  ]
+}
