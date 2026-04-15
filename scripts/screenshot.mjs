@@ -18,7 +18,7 @@ export async function screenshot(slug, { width = 1400, deviceScaleFactor = 2 } =
   const browser = await chromium.launch();
   try {
     const ctx = await browser.newContext({
-      viewport: { width, height: 900 },
+      viewport: { width, height: 2000 },
       deviceScaleFactor
     });
     const page = await ctx.newPage();
@@ -26,9 +26,19 @@ export async function screenshot(slug, { width = 1400, deviceScaleFactor = 2 } =
     // Várunk, amíg a snake-sorrend és a nyilak kirajzolódnak
     await page.waitForLoadState('networkidle').catch(() => {});
     await page.waitForTimeout(700);
-    // A .kk-root elemről screenshot, hogy ne legyen felesleges margó
-    const root = page.locator('.kk-root').first();
-    await root.screenshot({ path: pngPath });
+    // A .kk-root bounding box + némi extra a kilógó körök miatt
+    const box = await page.locator('.kk-root').first().boundingBox();
+    if (!box) throw new Error('Nem található .kk-root');
+    const EXTRA = 24; // padding a kilógó sorszám/ikon körök miatt
+    await page.screenshot({
+      path: pngPath,
+      clip: {
+        x: Math.max(0, box.x - EXTRA),
+        y: Math.max(0, box.y - EXTRA),
+        width: box.width + EXTRA * 2,
+        height: box.height + EXTRA * 2
+      }
+    });
     return pngPath;
   } finally {
     await browser.close();
