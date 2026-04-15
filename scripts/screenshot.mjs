@@ -25,7 +25,19 @@ export async function screenshot(slug, { width = 1400, deviceScaleFactor = 2 } =
     await page.goto('file://' + htmlPath);
     // Várunk, amíg a snake-sorrend és a nyilak kirajzolódnak
     await page.waitForLoadState('networkidle').catch(() => {});
-    await page.waitForTimeout(700);
+    // Várunk, hogy minden ikon kép betöltődjön (GitHub Pages-ről)
+    await page.evaluate(async () => {
+      const imgs = Array.from(document.querySelectorAll('img'));
+      await Promise.all(imgs.map(img => {
+        if (img.complete) return Promise.resolve();
+        return new Promise(res => {
+          img.addEventListener('load', res, { once: true });
+          img.addEventListener('error', res, { once: true });
+          setTimeout(res, 5000);
+        });
+      }));
+    });
+    await page.waitForTimeout(1000);
     // A .kk-root bounding box + némi extra a kilógó körök miatt
     const box = await page.locator('.kk-root').first().boundingBox();
     if (!box) throw new Error('Nem található .kk-root');
