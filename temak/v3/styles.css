@@ -142,8 +142,8 @@
   position: absolute;
   bottom: -12px;
   right: -8px;
-  width: 32px;
-  height: 32px;
+  width: 30px;
+  height: 30px;
   background: #25273e;
   border: 3px solid var(--kk-page-bg);
   border-radius: 50%;
